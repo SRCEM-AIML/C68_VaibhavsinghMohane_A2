@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes - Recipe Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+            display: flex;
+            justify-content: center;  
+            align-items: center;     
+            height: 100vh;            
+            margin: 0;
+      }
+        .container {
+            width: 60%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #444;
+        }
+        .recipe-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .recipe-list li {
+            background: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Recipe List</h1>
+        <ul class="recipe-list">
+            <li>Pasta <a href="{% url 'recipe_detail' %}">View Recipe</a></li>
+            <li>Chocolate Cake <a href="{% url 'recipe_detail' %}">View Recipe</a></li>
+            <li>Pizza <a href="{% url 'recipe_detail' %}">View Recipe</a></li>
+        </ul>
+        <a href="{% url 'home' %}" class="button">Back to Home</a>
+    </div>
+</body>
+</html>
