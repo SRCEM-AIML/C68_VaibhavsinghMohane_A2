@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_HUB_USER = 'raven2678'
+        IMAGE_NAME = 'studentproject-app'
+    }
+
     stages {
         stage('Clone Repository') {
             steps {
@@ -11,7 +16,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t studentproject-app .'
+                    sh "docker build -t ${IMAGE_NAME} ."
                 }
             }
         }
@@ -19,7 +24,9 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh 'docker run -d -p 8000:8000 studentproject-app'
+                    sh "docker stop ${IMAGE_NAME} || true"
+                    sh "docker rm ${IMAGE_NAME} || true"
+                    sh "docker run -d --name ${IMAGE_NAME} -p 8000:8000 ${IMAGE_NAME}"
                 }
             }
         }
@@ -27,9 +34,10 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    sh 'docker login -u vaibhavmohane226@gmail.com -p vaibhav@123'
-                    sh 'docker tag studentproject-app vaibhavmohane226@gmail.com/studentproject-app'
-                    sh 'docker push vaibhavmohane226@gmail.com/studentproject-app'
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+                        sh "docker tag ${IMAGE_NAME} ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
+                        sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
+                    }
                 }
             }
         }
