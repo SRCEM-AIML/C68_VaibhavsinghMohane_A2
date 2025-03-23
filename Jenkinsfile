@@ -33,11 +33,9 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                        sh "docker tag ${IMAGE_NAME} ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
-                        sh "docker push ${DOCKER_HUB_USER}/${IMAGE_NAME}:latest"
-                    }
+                withDockerRegistry([credentialsId: 'docker-hub-credentials', url: 'https://index.docker.io/v1/']) {
+                    sh 'docker tag studentproject-app your-dockerhub-username/studentproject-app'
+                    sh 'docker push your-dockerhub-username/studentproject-app'
                 }
             }
         }
