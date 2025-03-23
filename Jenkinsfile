@@ -34,8 +34,8 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 withDockerRegistry([credentialsId: 'docker-hub-credentials', url: 'https://index.docker.io/v1/']) {
-                    sh 'docker tag studentproject-app your-dockerhub-username/studentproject-app'
-                    sh 'docker push your-dockerhub-username/studentproject-app'
+                    sh 'docker tag studentproject-app raven2678/studentproject-app'
+                    sh 'docker push raven2678/studentproject-app'
                 }
             }
         }
