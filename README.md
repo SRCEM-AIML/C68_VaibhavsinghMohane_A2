@@ -1,11 +1,4 @@
-Based on your project structure and goals, here's a sleek and interactive `README.md` template tailored for your repository:
-
-```markdown
-# StudentProject
-
-![Django CI/CD](https://img.shields.io/badge/Django-CI%2FCD-blue)
-![Docker](https://img.shields.io/badge/Docker-Containerization-blue)
-![Jenkins](https://img.shields.io/badge/Jenkins-Automation-blue)
+# **StudentProject**
 
 **StudentProject** is a Django-based web application designed to demonstrate the integration of containerization using Docker and Continuous Integration/Continuous Deployment (CI/CD) pipelines with Jenkins.
 
